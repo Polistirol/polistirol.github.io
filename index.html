@@ -34,13 +34,21 @@
 
         }
 
-        #optionMenu {
+        #optionButton {
             width: auto;
             height: auto;
             position: absolute;
             top: 0;
             left: 1%;
             z-index: 1;
+        }
+
+        #optionTools {
+            width: auto;
+            height: auto;
+            position: relative;
+            left: 3%;
+            display: inline;
         }
     </style>
 </head>
@@ -53,11 +61,16 @@
         <img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2020%2F12%2F03%2FHouse-of-the-Dragon-2.jpeg"
             alt="unloaded.." id='imgLayer' />
 
-        <div id="optionMenu">
-            <input type="text" id="imgUrl">
-            <button onclick="updateImage()"> Load</button>
-            <button onclick="setZoom()" id="zoomBtn">OFF</button>
-            <input type="range" min="0" max="100" step="1" value="20" onchange="setOpacity(this.value)">
+        <div id="optionButton">
+            <button onclick="hideMenu()">*</button>
+
+
+            <div id="optionTools">
+                <input type="text" id="imgUrl">
+                <button onclick="updateImage()"> Load</button>
+                <button onclick="setZoom()" id="zoomBtn">OFF</button>
+                <input type="range" min="0" max="100" step="1" value="20" onchange="setOpacity(this.value)">
+            </div>
         </div>
 
 
@@ -106,6 +119,18 @@
 
         function setOpacity(value) {
             document.getElementById("imgLayer").style.opacity = value / 100
+        }
+
+        function hideMenu() {
+            var icons = document.getElementById("optionTools")
+            var status = icons.style.display
+            if (status == "none") {
+                icons.style.display = "inline"
+            }
+            else {
+                icons.style.display = "none"
+            }
+
         }
 
     </script>
