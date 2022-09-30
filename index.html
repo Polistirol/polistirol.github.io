@@ -3,6 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta charset="utf-8">
     <title>Display Webcam Stream</title>
 
@@ -55,14 +56,13 @@
 
 <body>
     <div id="container">
-        <video autoplay="true" id="videoElement">
-
-        </video>
+        <video autoplay="true" id="videoElement"></video>
         <img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2020%2F12%2F03%2FHouse-of-the-Dragon-2.jpeg"
             alt="unloaded.." id='imgLayer' />
 
         <div id="optionButton">
             <button onclick="hideMenu()">*</button>
+            <button onclick="toggleFullscreen()">FS</button>
 
 
             <div id="optionTools">
@@ -80,9 +80,6 @@
 
     <script>
         var video = document.querySelector("#videoElement");
-        if (video.requestFullscreen) {
-            video.webkitRequestFullscreen()
-        }
         var activeZoom = "off"
 
         if (navigator.mediaDevices.getUserMedia) {
@@ -129,6 +126,17 @@
             }
             else {
                 icons.style.display = "none"
+            }
+        }
+
+        function toggleFullscreen() {
+            var stat = document.fullscreenElement;
+            if (!stat) {
+                document.body.requestFullscreen();
+            }
+
+            else {
+                document.exitFullscreen()
             }
 
         }
