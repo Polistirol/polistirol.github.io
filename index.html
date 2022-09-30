@@ -1,55 +1,72 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>Display Webcam Stream</title>
- 
-<style>
-#container {
-	margin: 0px auto;
-	width: 500px;
-	height: 375px;
-	border: 10px #333 solid;
-}
-#videoElement {
-	width: 500px;
-	height: 375px;
-	background-color: #666;
-}
-#imgLayer{
-	width: 500px;
-	height: 375px;
-	opacity: 0.5;
-	  position: absolute;
-  	top: 0;
-  	left: 0;
-	z-index: 10;
-}
-	
-</style>
+    <meta charset="utf-8">
+    <title>Display Webcam Stream</title>
+
+    <style>
+        #container {
+            /* margin: 0px ; */
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* border: 10px #333 solid; */
+        }
+
+        #videoElement {
+            width: 100%;
+            height: 100%;
+            /* background-color: #666; */
+        }
+
+        #imgLayer {
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+
+        }
+    </style>
 </head>
- 
+
 <body>
-<div id="container">
-	<video autoplay="true" id="videoElement">
-	
-	</video>
-	<img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2020%2F12%2F03%2FHouse-of-the-Dragon-2.jpeg" alt="unloaded.." id='imgLayer'/>
+    <div id="container">
+        <video autoplay="true" id="videoElement">
 
-</div>
-<script>
-var video = document.querySelector("#videoElement");
+        </video>
+        <img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2020%2F12%2F03%2FHouse-of-the-Dragon-2.jpeg"
+            alt="unloaded.." id='imgLayer' />
+        <input type="text" id="imgUrl">
+        <button onclick="updateImage()"> click</button>
 
-if (navigator.mediaDevices.getUserMedia) {
-  navigator.mediaDevices.getUserMedia({ video: true })
-    .then(function (stream) {
-      video.srcObject = stream;
-    })
-    .catch(function (err0r) {
-      console.log("Something went wrong!");
-    });
-}
-</script>
+    </div>
+
+    <script>
+        var video = document.querySelector("#videoElement");
+
+        if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    video.srcObject = stream;
+                })
+                .catch(function (err0r) {
+                    console.log("Something went wrong!");
+                });
+        }
+
+        function updateImage() {
+            url = document.getElementById("imgUrl").value
+            console.log(url)
+            imgPlace = document.getElementById("imgLayer").src = url
+        }
+
+    </script>
 </body>
+
 </html>
