@@ -33,7 +33,7 @@
             top: 0;
             left: 0;
             z-index: 1;
-
+            scale: 1
         }
 
         #optionButton {
@@ -74,6 +74,7 @@
             <button onclick="updateImage()"> Load</button>
             <button onclick="setZoom()" id="zoomBtn">OFF</button>
             <input type="range" min="0" max="100" step="1" value="20" onchange="setOpacity(this.value)">
+            <input type="range" min="1" max="10" step="1" value="1" onchange="setScale(this.value)">
         </div>
 
 
@@ -97,7 +98,7 @@
                     max: 1440
                 },
                 facingMode: {
-                    exact: 'environment'
+                    exact: 'enviroment'
                 }
             }
         }
@@ -138,6 +139,9 @@
 
         function setOpacity(value) {
             document.getElementById("imgLayer").style.opacity = value / 100
+        }
+        function setScale(value) {
+            document.getElementById("imgLayer").style.scale = value
         }
 
         function hideMenu() {
